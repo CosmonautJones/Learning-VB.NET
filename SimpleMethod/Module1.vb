@@ -5,13 +5,17 @@
         Console.WriteLine("The Name Game")
 
         Console.Write("What's your first name? ")
-        Dim firstName As String = GetReversedString(Console.ReadLine())
+        Dim firstName As String = Console.ReadLine()
 
         Console.Write("What's your last name? ")
-        Dim lastName As String = GetReversedString(Console.ReadLine())
+        Dim lastName As String = Console.ReadLine()
 
         Console.Write("In what city were you born? ")
-        Dim city As String = GetReversedString(Console.ReadLine())
+        Dim city As String = Console.ReadLine()
+
+        ReverseString(firstName)
+        ReverseString(lastName)
+        ReverseString(city)
 
         DisplayResult(firstName, lastName, city)
         Console.ReadLine()
@@ -29,11 +33,16 @@
     End Sub
 
     Function GetReversedString(message As String) As String
-
         Dim messageArray As Char() = message.ToCharArray()
         Array.Reverse(messageArray)
         Return String.Concat(messageArray)
-
     End Function
+
+    ' ByRef manipulates the actual value of the "bucket" in the actual memory location
+    Sub ReverseString(ByRef message As String)
+        Dim messageArray As Char() = message.ToCharArray()
+        Array.Reverse(messageArray)
+        message = String.Concat(messageArray)
+    End Sub
 
 End Module
